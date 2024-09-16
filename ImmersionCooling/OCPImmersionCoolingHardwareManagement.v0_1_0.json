@@ -1,0 +1,460 @@
+{
+  "SchemaDefinition": "RedfishInteroperabilityProfile.v1_7_0",
+  "ProfileName": "OCPImmersionCoolingController",
+  "ProfileVersion": "0.1.0",
+  "Purpose": "Profile for the OCP Immersion Cooling Controller.",
+  "OwningEntity": "Open Compute Project",
+  "ContactInfo": "mick.jones@ocproject.net",
+  "RequiredProfiles": {
+    "OCPBaselineLiquidCoolingHM": {
+      "MinVersion": "0.1.0"
+  }
+  },
+  "Resources": {
+    "Control": {
+      "MinVersion": "1.1.0",
+      "URIs": [
+        "/redfish/v1/Chassis/{ChassisId}/Controls/{ControlId}",
+        "/redfish/v1/CoolingEquipment/ImmersionUnits/{CoolingUnitId}/Controls/{ControlId}",
+        "/redfish/v1/CoolingEquipment/RackCDUs/{CoolingUnitId}/Controls/{ControlId}",
+        "/redfish/v1/CoolingEquipment/CDUs/{CoolingUnitId}/Controls/{ControlId}",
+        "/redfish/v1/CoolingEquipment/CoolingLoops/{CoolingUnitId}/Controls/{ControlId}"
+      ],
+      "Purpose": "To control the Cooling Unit resource",
+      "PropertyRequirements": {
+        "Accuracy": {
+          "ReadRequirement": "Recommended"
+        },
+        "Actions": {
+          "ReadRequirement": "Recommended"
+        },
+        "AssociatedSensors": {
+          "ReadRequirement": "Recommended"
+        },
+        "ControlLoop": {
+          "Purpose": "To define the Control Loop for the Thermal resource",
+          "PropertyRequirements": {
+            "Differential": {
+              "ReadRequirement": "Recommended",
+              "WriteRequirement": "Recommended"
+            },
+            "Integral": {
+              "ReadRequirement": "Recommended",
+              "WriteRequirement": "Recommended"
+            },
+            "Proportional": {
+              "ReadRequirement": "Recommended",
+              "WriteRequirement": "Recommended"
+            }
+          }
+        },
+        "ControlType": {
+          "Purpose": "Supported Control Types",
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "DeadBand": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "Description": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "Id": {},
+        "Increment": {
+          "ReadRequirement": "Recommended"
+        },
+        "Location": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "Name": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended",
+          "Comparison": "AnyOf",
+          "Values": [
+            "Air temperature, In",
+            "Air temperature, Out",
+            "Air temperature, Differential",
+            "Air pressure, Differential ",
+            "Water temperature, Out",
+            "Water temperature, Differential"
+          ]
+        },
+        "Oem": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "OperatingMode": {},
+        "PhysicalContext": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "PhysicalSubContext": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "Sensor": {
+          "ReadRequirement": "Recommended"
+        },
+        "SetPoint": {
+          "ReadRequirement": "Mandatory",
+          "WriteRequirement": "Mandatory"
+        },
+        "SetPointRangeMax": {
+          "ReadRequirement": "Recommended"
+        },
+        "SetPointRangeMin": {
+          "ReadRequirement": "Recommended"
+        },
+        "SetPointUnits": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "SetPointUpdateTime": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "Status": {
+          "ReadRequirement": "Recommended"
+        },
+        "Links": {}
+      }
+    },
+    "ControlCollection": {
+      "URIs": [
+        "/redfish/v1/Chassis/{ChassisId}/Controls/{ControlId}",
+        "/redfish/v1/CoolingEquipment/ImmersionUnits/{CoolingUnitId}/Controls/{ControlId}",
+        "/redfish/v1/CoolingEquipment/RackCDUs/{CoolingUnitId}/Controls/{ControlId}",
+        "/redfish/v1/CoolingEquipment/CDUs/{CoolingUnitId}/Controls/{ControlId}",
+        "/redfish/v1/CoolingEquipment/CoolingLoops/{CoolingUnitId}/Controls/{ControlId}"
+      ],
+      "PropertyRequirements": {
+        "Members": {
+          "MinCount": 1
+        }
+      }
+    },
+    "Sensor": {
+      "MinVersion": "1.5.0",
+      "URIs": [
+        "/redfish/v1/Chassis/{ChassisId}/Sensors/{SensorId}",
+        "/redfish/v1/CoolingEquipment/RackCDUs/{CoolingUnitId}/Sensors/{SensorId}",
+        "/redfish/v1/CoolingEquipment/CDUs/{CoolingUnitId}/Sensors/{SensorId}",
+        "/redfish/v1/CoolingEquipment/ImmersionUnits/{CoolingUnitId}/Sensors/{SensorId}",
+        "/redfish/v1/CoolingEquipment/CoolingLoops/{CoolingUnitId}/Sensors/{SensorId}"
+      ],
+      "Purpose": "Required DLQ Sensors",
+      "ReadRequirement": "Mandatory",
+      "MinCount": 3,
+      "PropertyRequirements": {
+        "Name": {
+          "Comparison": "OneOf",
+          "Values": [
+            "DLQ Supply Temperature Celsius",
+            "DLQ Return Temperature Celsius",
+            "DLQ Power Input Watts",
+            "DLQ Level %",
+            "DLQ Quality %"
+          ]
+        },
+        "Description": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "Implementation": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "Location": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "Reading": {
+          "ReadRequirement": "Mandatory",
+          "WriteRequirement": "None"
+        },
+        "ReadingTime": {
+          "ReadRequirement": "Mandatory",
+          "WriteRequirement": "None"
+        },
+        "ReadingType": {
+          "ReadRequirement": "Mandatory",
+          "WriteRequirement": "None",
+          "Comparison": "OneOf",
+          "Values": [
+            "Temperature",
+            "Power",
+            "PressurekPa",
+            "LiquidFlow",
+            "Percent"
+          ]
+        },
+        "ReadingUnits": {
+          "ReadRequirement": "Mandatory",
+          "WriteRequirement": "None",
+          "Comparison": "OneOf",
+          "Values": [
+            "Cel",
+            "W",
+            "kPa",
+            "L/s",
+            "%"
+          ]
+        },
+        "Status": {
+          "ReadRequirement": "Mandatory",
+          "WriteRequirement": "None"
+        },
+        "Thresholds": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        }
+      }
+    },
+    "SensorCollection": {
+      "URIs": [
+        "/redfish/v1/Chassis/{ChassisId}/Sensors/{SensorId}",
+        "/redfish/v1/CoolingEquipment/RackCDUs/{CoolingUnitId}/Sensors/{SensorId}",
+        "/redfish/v1/CoolingEquipment/CDUs/{CoolingUnitId}/Sensors/{SensorId}",
+        "/redfish/v1/CoolingEquipment/ImmersionUnits/{CoolingUnitId}/Sensors/{SensorId}",
+        "/redfish/v1/CoolingEquipment/CoolingLoops/{CoolingUnitId}/Sensors/{SensorId}"
+      ],
+      "PropertyRequirements": {
+        "Members": {
+          "MinCount": 2
+        }
+      }
+    },
+    "Facility": {
+      "MinVersion": "1.4.0",
+      "Purpose": "The Facility that the cooling units belong to",
+      "ReadRequirement": "Mandatory",
+      "PropertyRequirements": {
+        "FacilityType": {
+          "ReadRequirement": "Mandatory",
+          "WriteRequirement": "Recommended"
+        },
+        "AmbientMetrics": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "Description": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "Links": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "Location": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "Status": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "CoolingDomains": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        }
+      }
+    },
+    "Resource": {
+      "Purpose": "Common Redfish resources"
+    },
+    "CoolingLoop": {
+      "MinVersion": "1.0.0"
+    },
+    "CoolingLoopCollection": {
+      "PropertyRequirements": {
+        "Members": {
+          "MinCount": 0
+        }
+      }
+    },
+    "LoopConnection": {
+      "MinVersion": "1.0.0",
+      "URIs": [
+        "/redfish/v1/CoolingEquipment/RackCDUs/{CoolingUnitId}/PrimaryLoopConnections",
+        "/redfish/v1/CoolingEquipment/RackCDUs/{CoolingUnitId}/SecondaryLoopConnections",
+        "/redfish/v1/CoolingEquipment/CDUs/{CoolingUnitId}/PrimaryLoopConnections",
+        "/redfish/v1/CoolingEquipment/CDUs/{CoolingUnitId}/SecondaryLoopConnections",
+        "/redfish/v1/CoolingEquipment/ImmersionUnits/{CoolingUnitId}/PrimaryLoopConnections",
+        "/redfish/v1/CoolingEquipment/ImmersionUnits/{CoolingUnitId}/SecondaryLoopConnections"
+      ]
+    },
+    "LoopConnectionCollection": {
+      "URIs": [
+        "/redfish/v1/CoolingEquipment/RackCDUs/{CoolingUnitId}/PrimaryLoopConnections",
+        "/redfish/v1/CoolingEquipment/RackCDUs/{CoolingUnitId}/SecondaryLoopConnections",
+        "/redfish/v1/CoolingEquipment/CDUs/{CoolingUnitId}/PrimaryLoopConnections",
+        "/redfish/v1/CoolingEquipment/CDUs/{CoolingUnitId}/SecondaryLoopConnections",
+        "/redfish/v1/CoolingEquipment/ImmersionUnits/{CoolingUnitId}/PrimaryLoopConnections",
+        "/redfish/v1/CoolingEquipment/ImmersionUnits/{CoolingUnitId}/SecondaryLoopConnections"
+      ],
+      "PropertyRequirements": {
+        "Members": {
+          "MinCount": 1
+        }
+      }
+    },
+    "CoolingUnit": {
+      "MinVersion": "1.0.0"
+    },
+    "CoolingUnitCollection": {
+      "PropertyRequirements": {
+        "Members": {
+          "MinCount": 1
+        }
+      }
+    },
+    "CoolingEquipment": {
+      "MinVersion": "1.0.0",
+      "PropertyRequirements": {
+        "CoolingLoops": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "None"
+        },
+        "RackCDUs": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "None"
+        },
+        "ImmersionUnits": {
+          "ReadRequirement": "Mandatory",
+          "WriteRequirement": "None"
+        }
+      }
+    },
+    "Circuit": {
+      "MinVersion": "1.4.0",
+      "URIs": [
+        "/redfish/v1/CoolingEquipment/RackCDUs/{CoolingUnitId}/{CircuitId}",
+        "/redfish/v1/CoolingEquipment/CDUs/{CoolingUnitId}/{CircuitId}",
+        "/redfish/v1/CoolingEquipment/ImmersionUnits/{CoolingUnitId}/{CircuitId}"
+      ]
+    },
+    "EnvironmentMetrics": {
+      "MinVersion": "1.2.0",
+      "URIs": [
+        "/redfish/v1/Chassis/{ChassisId}/EnvironmentMetrics",
+        "/redfish/v1/Facilities/{FacilityId}/EnvironmentMetrics",
+        "/redfish/v1/Facilities/{FacilityId}/AmbientMetrics",
+        "/redfish/v1/CoolingEquipment/RackCDUs/{CoolingUnitId}/EnvironmentMetrics",
+        "/redfish/v1/CoolingEquipment/CDUs/{CoolingUnitId}/EnvironmentMetrics",
+        "/redfish/v1/CoolingEquipment/ImmersionUnits/{CoolingUnitId}/EnvironmentMetrics"
+      ],
+      "PropertyRequirements": {
+        "PowerLimitsWatts": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "PowerLoadPercent": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "PowerWatts": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "TemperatureCelsius": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        }
+      }
+    },
+    "ThermalMetrics": {
+      "MinVersion": "1.0.0",
+      "URIs": [
+        "/redfish/v1/Chassis/{ChassisId}/ThermalSubsystem/ThermalMetrics",
+        "/redfish/v1/CoolingEquipment/RackCDUs/{CoolingUnitId}/ThermalMetrics",
+        "/redfish/v1/CoolingEquipment/CDUs/{CoolingUnitId}/ThermalMetrics",        
+        "/redfish/v1/CoolingEquipment/ImmersionUnits/{CoolingUnitId}/ThermalMetrics"
+      ],
+      "PropertyRequirements": {
+        "TemperatureReadingsCelsius": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        }
+      }
+    },
+    "Pump": {
+      "MinVersion": "1.0.0",
+      "URIs": [
+        "/redfish/v1/CoolingEquipment/RackCDUs/{CoolingUnitId}/Pumps/{PumpId}",
+        "/redfish/v1/CoolingEquipment/CDUs/{CoolingUnitId}/Pumps/{PumpId}",
+        "/redfish/v1/CoolingEquipment/ImmersionUnits/{CoolingUnitId}/Pumps/{PumpId}"
+      ]
+    },
+    "PumpCollection": {
+      "URIs": [
+        "/redfish/v1/CoolingEquipment/RackCDUs/{CoolingUnitId}/Pumps/{PumpId}",
+        "/redfish/v1/CoolingEquipment/CDUs/{CoolingUnitId}/Pumps/{PumpId}",
+        "/redfish/v1/CoolingEquipment/ImmersionUnits/{CoolingUnitId}/Pumps/{PumpId}"
+      ],
+      "PropertyRequirements": {
+        "Members": {
+          "MinCount": 0
+        }
+      }
+    },
+    "EventService": {
+      "MinVersion": "1.7.2"
+    },
+    "EventDestinationCollection": {
+      "PropertyRequirements": {
+        "Members": {
+          "MinCount": 0
+        }
+      }
+    },
+    "EventDestination": {
+      "MinVersion": "1.11.1"
+    },
+    "CertificateCollection": {
+      "URIs": [
+        "/​redfish/​v1/​EventService/​Subscriptions/​{EventDestinationId}/​Certificates/​{CertificateId}",
+        "/​redfish/​v1/​EventService/​Subscriptions/​{EventDestinationId}/​ClientCertificates/​{CertificateId}"
+      ],
+      "PropertyRequirements": {
+        "Members": {
+          "MinCount": 0
+        }
+      }
+    },
+    "Certificate": {
+      "MinVersion": "1.5.0"
+    },
+    "ServiceRoot": {
+      "MinVersion": "1.13.0",
+      "PropertyRequirements": {
+        "AccountService": {
+          "ReadRequirement": "Mandatory",
+          "WriteRequirement": "None"
+        },
+        "EventService": {
+          "ReadRequirement": "Mandatory",
+          "WriteRequirement": "None"
+        },
+        "CoolingEquipment": {
+          "ReadRequirement": "Mandatory",
+          "WriteRequirement": "None"
+        },
+        "Facilities": {
+          "ReadRequirement": "Mandatory",
+          "WriteRequirement": "None"
+        },
+        "SessionService": {
+          "ReadRequirement": "Mandatory",
+          "WriteRequirement": "None"
+        },
+        "Links": {
+          "ReadRequirement": "Mandatory",
+          "WriteRequirement": "None"
+        }
+      }
+    }
+  }
+}

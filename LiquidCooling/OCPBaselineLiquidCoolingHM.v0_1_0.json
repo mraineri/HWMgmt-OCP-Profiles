@@ -1,0 +1,248 @@
+{
+    "SchemaDefinition": "RedfishInteroperabilityProfile.v1_7_0",
+    "ProfileName": "OCP Baseline Liquid Cooling Infrastructure Unit Management",
+    "ProfileVersion": "0.1.0",
+    "Purpose": "Specifies the OCP management baseline requirements for the Redfish interface on OCP liquid cooling infrastructure.",
+    "OwningEntity": "Open Compute Project",
+    "ContactInfo": "michael.b.jones@vertiv.com",
+    "RequiredProfiles": {},
+    "Resources": {
+        "Chassis": {          
+            "URIs": [
+                "/redfish/v1/Chassis/{ChassisId}"
+            ],
+            "PropertyRequirements": {
+                "ChassisType": {},
+                "EnvironmentMetrics": {},
+                "Links": {
+                    "PropertyRequirements": {
+                        "CoolingUnits": {},
+                        "ManagedBy": {}
+                    }
+                },
+                "Manufacturer": {},
+                "Model": {},
+                "Name": {},
+                "PartNumber": {"ReadRequirement": "Recommended"},
+                "PowerState": {},
+                "Sensors": {},
+                "SerialNumber": {},
+                "Status": {
+                    "PropertyRequirements": {
+                        "Health": {},
+                        "State": {}
+                    }
+                },
+                "ThermalSubsystem": {
+                    "ReadRequirement": "Recommended"
+                },
+                "UUID": {"ReadRequirement": "Recommended"},
+                "Version": {"ReadRequirement": "Recommended"}
+            }
+        },
+        "EnvironmentMetrics": {
+            "URIs": [
+                "/redfish/v1/Chassis/{ChassisId}/EnvironmentMetrics"
+            ],
+            "PropertyRequirements": {
+                "Purpose": "Chassis level summary of environment metrics",
+                "EnergykWh": {
+                    "ReadRequirement": "Recommended"
+                },
+                "PowerWatts": {
+                    "ReadRequirement": "Recommended"
+                }
+            }
+        },
+        "ThermalSubsystem": {
+            "ReadRequirement": "Recommended",
+            "URIs": [
+                "/redfish/v1/Chassis/{ChassisId}/ThermalSubsystem"
+            ],
+            "PropertyRequirements": {
+                "Status": {
+                    "PropertyRequirements": {
+                        "Health": {},
+                        "State": {}
+                    }
+                },
+                "ThermalMetrics": {}
+            }
+        },
+        "ThermalMetrics": { 
+            "ReadRequirement": "Recommended",
+            "URIs": [
+                "/redfish/v1/Chassis/{ChassisId}/ThermalSubsystem/ThermalMetrics"
+            ],
+            "PropertyRequirements": {
+                "TemperatureReadingsCelsius": {
+                    "ReadRequirement": "Recommended"
+                },
+                "TemperatureSummaryCelsius": {
+                    "ReadRequirement": "Recommended",
+                    "PropertyRequirements": {
+                        "Ambient": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "Internal": {
+                            "ReadRequirement": "Recommended"
+                        }
+                    }
+                }
+            }
+        },
+        "ThermalEquipment": {
+            "URIs": [
+                "/redfish/v1/ThermalEquipment"
+            ],
+            "PropertyRequirements": {}
+        },
+        "CoolingUnit": {
+            "URIs": [
+            ],
+            "PropertyRequirements": {
+                "Coolant": {
+                    "PropertyRequirements": {
+                        "CoolantType": {},
+                        "DensityKgPerCubicMeter": {},
+                        "SpecificHeatkJoulesPerKgK": {}
+                    }
+                },
+                "CoolantConnectorRedundancy": {
+                    "ReadRequirement": "Recommended"
+                },
+                "CoolingCapacityWatts": {
+                    "ReadRequirement": "Mandatory",
+                    "Purpose": "This is a required product capability"
+                },
+                "EnvironmentMetrics": {},
+                "EquipmentType": {
+                },
+                "FilterRedundancy": {
+                    "ReadRequirement": "Recommended"
+                },
+                "Filters": {
+                    "ReadRequirement": "IfImplemented"
+                },
+                "FirmwareVersion": {"ReadRequirement": "Recommended"},
+                "LeakDetection": {},
+                "Links": {
+                    "PropertyRequirements": {
+                        "Chassis": {},
+                        "ManagedBy": {
+                            "Purpose": "Aligns with DMTF best practice; must have a manager for each device",
+                            "ReadRequirement": "Mandatory"
+                        }
+                    }
+                },
+                "Manufacturer": {},
+                "Model": {},
+                "Name": {},
+                "PartNumber": {},
+                "PrimaryCoolantConnectors": {},
+                "ProductionDate": {"ReadRequirement": "Recommended"},
+                "PumpRedundancy": {
+                    "ReadRequirement": "Recommended"
+                },
+                "Pumps": {
+                    "ReadRequirement": "IfImplemented"
+                },
+                "SecondaryCoolantConnectors": {
+                    "Purpose": "Not required for a base LC profile",
+                    "ReadRequirement": "None"
+                },
+                "SerialNumber": {},
+                "Status": {
+                    "PropertyRequirements": {
+                        "Health": {},
+                        "State": {}
+                    }
+                },
+                "UUID": {"ReadRequirement": "Recommended"},
+                "Version": {"ReadRequirement": "Recommended"},
+                "AssetTag": {},
+                "CountryOfOrigin": {},
+                "UserLabel": {}
+            }
+        },
+        "CoolantConnector": {
+            "PropertyRequirements": {
+                "Coolant": {
+                    "PropertyRequirements": {
+                        "CoolantType": {},
+                        "DensityKgPerCubicMeter": {},
+                        "SpecificHeatkJoulesPerKgK": {}
+                    }
+                },
+                "CoolantConnectorType": {},
+                "Name": {},
+                "RatedFlowLitersPerMinute": {},
+                "SupplyTemperatureCelsius": {
+                    "PropertyRequirements": {
+                        "DataSourceUri": {},
+                        "Reading": {}
+                    }
+                },
+                "ReturnTemperatureCelsius": {
+                    "PropertyRequirements": {
+                        "DataSourceUri": {},
+                        "Reading": {}
+                    }
+                },
+                "Status": {}
+            }
+        },
+        "LeakDetection": {
+            "URIs": [
+            ],
+            "PropertyRequirements": {
+                "LeakDetectorGroups": {
+                    "PropertyRequirements": {
+                        "Detectors": {},
+                        "GroupName": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "HumidityPercent": {}
+                    }
+                },
+                "LeakDetectors": {
+                    "ReadRequirement": "Recommended"
+                },
+                "Status": {
+                    "PropertyRequirements": {
+                        "Health": {},
+                        "State": {}
+                    }
+                }
+            }
+        },
+        "LeakDetector": {
+            "URIs": [
+            ],
+            "PropertyRequirements": {
+                "DetectorState": {},
+                "LeakDetectorType": {},
+                "Location": {
+                    "ReadRequirement": "Recommended",
+                    "PropertyRequirements": {                        
+                        "PartLocation": {
+                            "PropertyRequirements": {
+                                "LocationOrdinalValue": {"ReadRequirement": "Recommended"},
+                                "LocationType": {"ReadRequirement": "Recommended"},
+                                "Orientation": {"ReadRequirement": "Recommended"},
+                                "Reference": {"ReadRequirement": "Recommended"},
+                                "ServiceLabel": {"ReadRequirement": "Mandatory"}
+                            }
+                        }
+                    }
+                },
+                "Status": {
+                    "PropertyRequirements": {
+                        "Health": {},
+                        "State": {}
+                    }
+                }
+            }
+        }
+    }
+}
